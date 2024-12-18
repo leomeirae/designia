@@ -12,23 +12,23 @@ function BuyCredits() {
     const creditsOption=[
         {
           credits:5,
-          amount:0.99
+          amount:5.99
         },
         {
           credits:10,
-          amount:1.99
+          amount:9.99
         },
         {
           credits:25,
-          amount:3.99
+          amount:19.99
         },
         {
           credits:50,
-          amount:6.99
+          amount:29.99
         },
         {
           credits:100,
-          amount:9.99
+          amount:49.99
         },
       ]
     
@@ -54,8 +54,8 @@ function BuyCredits() {
       }
   return (
     <div>
-        <h2 className='font-bold text-2xl'>Buy More Credits</h2>
-        <p>Unlock endless possibilities – Buy more credits and transform your room with AI magic! ✨🛋️</p>
+        <h2 className='font-bold text-2xl'>Adquirir Créditos</h2>
+        <p>Desbloqueie infinitas posibilidades – adquira mais créditos e transforme seus ambientes com a magia da IA! ✨🛋️</p>
 
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-10'>
             {creditsOption.map((item,index)=>(
@@ -64,9 +64,9 @@ function BuyCredits() {
                 `}
               >
                 <h2 className='font-bold text-3xl'>{item.credits}</h2>
-                <h2 className='font-medium text-xl'>Credits</h2>
+                <h2 className='font-medium text-xl'>Créditos</h2>
 
-                <Button className="w-full" onClick={()=>setSelectedOption(item)}>Select</Button>
+                <Button className="w-full" onClick={()=>setSelectedOption(item)}>Selecionar</Button>
                 <h2 className='font-medium text-primary'>${item.amount}</h2>
               </div>
             ))}
