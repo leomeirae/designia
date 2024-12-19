@@ -14,6 +14,10 @@ import AiOutputDialog from '../_components/AiOutputDialog'
 import { db } from '@/config/db'
 import { Users } from '@/config/schema'
 import { UserDetailContext } from '@/app/_context/UserDetailContext'
+import { toast } from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { eq } from 'drizzle-orm'
 
 function CreateNew() {
 
@@ -25,6 +29,8 @@ function CreateNew() {
   const [orgImage,setOrgImage]=useState();
   const {userDetail,setUserDetail}=useContext(UserDetailContext);
   // const [outputResult,setOutputResult]=useState();
+  const router = useRouter()
+
   const onHandleInputChange=(value,fieldName)=>{
     setFormData(prev=>({
       ...prev,
@@ -35,6 +41,27 @@ function CreateNew() {
   }
 
   const GenerateAiImage=async()=>{
+    // Verificar se o usuário tem créditos suficientes
+    if (!userDetail?.credits || userDetail.credits <= 0) {
+      toast({
+        title: "Créditos insuficientes",
+        description: "Você precisa comprar mais créditos para continuar usando o aplicativo.",
+        variant: "destructive",
+      });
+      router.push('/dashboard/buy-credits');
+      return;
+    }
+
+    // Verificar se todos os campos obrigatórios foram preenchidos
+    if (!formData.image || !formData.roomType || !formData.designType) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos obrigatórios.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
     const rawImageUrl=await SaveRawImageToFirebase();
     const result=await axios.post('/api/redesign-room',{
@@ -76,24 +103,58 @@ function CreateNew() {
    * @returns 
    */
   const updateUserCredits=async()=>{
-    const result=await db.update(Users).set({
-      credits:userDetail?.credits-1
-    }).returning({id:Users.id});
+    try {
+        const result = await db.transaction(async (tx) => {
+            // Primeiro verifica se ainda tem créditos
+            const user = await tx.select()
+                .from(Users)
+                .where(eq(Users.email, userDetail.email))
+                .limit(1);
 
-    if(result)
-    {
-       
-        setUserDetail(prev=>({
-          ...prev,
-          credits:userDetail?.credits-1
-      }))
-        return result[0].id
+            if (!user[0] || user[0].credits <= 0) {
+                throw new Error('Créditos insuficientes');
+            }
+
+            // Atualiza os créditos
+            const updated = await tx.update(Users)
+                .set({ credits: user[0].credits - 1 })
+                .where(eq(Users.email, userDetail.email))
+                .returning({ id: Users.id, credits: Users.credits });
+
+            return updated[0];
+        });
+
+        setUserDetail(prev => ({
+            ...prev,
+            credits: result.credits
+        }));
+
+        return result.id;
+    } catch (error) {
+        console.error('Erro ao atualizar créditos:', error);
+        throw error;
     }
   }
 
   return (
     <div>
-        <h2 className='font-bold text-2xl md:text-4xl text-primary text-center'>Deixe a IA redesenhar seu ambiente</h2>
+        <div className="flex justify-between items-center mb-5">
+            <h2 className='font-bold text-2xl md:text-4xl text-primary text-center'>
+                Deixe a IA redesenhar seu ambiente
+            </h2>
+            <div className="flex items-center gap-2">
+                <span className={`font-bold ${userDetail?.credits <= 0 ? 'text-red-500' : 'text-primary'}`}>
+                    {userDetail?.credits || 0} créditos
+                </span>
+                {userDetail?.credits <= 1 && (
+                    <Link href="/dashboard/buy-credits">
+                        <Button variant="outline" size="sm">
+                            Comprar mais
+                        </Button>
+                    </Link>
+                )}
+            </div>
+        </div>
         <p className='text-center text-gray-500 font-bold'>Siga este passo a passo simples para criar seu design de interiores. 
           Os campos com * são obrigatórios.
         </p>
