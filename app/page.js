@@ -45,6 +45,7 @@ export default function Home() {
      
     </div>
    
+
     <div className="mt-14 flex justify-center gap-8">
       <div className="flex-1 max-w-lg">
         <ReactBeforeSliderComponent
@@ -61,10 +62,10 @@ export default function Home() {
       <div className="flex-1 max-w-lg">
         <ReactBeforeSliderComponent
           firstImage={{
-            imageUrl: '/after1.jpg'
+            imageUrl: '/before1.png'
           }}
           secondImage={{
-            imageUrl: '/before1.png'
+            imageUrl: '/after1.jpg'
           }}
           className="custom-slider"
         />
