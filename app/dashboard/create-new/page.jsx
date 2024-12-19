@@ -43,42 +43,43 @@ function CreateNew() {
   const GenerateAiImage=async()=>{
     // Verificar se o usuário tem créditos suficientes
     if (!userDetail?.credits || userDetail.credits <= 0) {
-      toast({
-        title: "Créditos insuficientes",
-        description: "Você precisa comprar mais créditos para continuar usando o aplicativo.",
-        variant: "destructive",
-      });
-      router.push('/dashboard/buy-credits');
-      return;
+        toast.error('Você não tem créditos suficientes. Adquira mais créditos para continuar.');
+        router.push('/dashboard/buy-credits');
+        return;
     }
 
     // Verificar se todos os campos obrigatórios foram preenchidos
     if (!formData.image || !formData.roomType || !formData.designType) {
-      toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha todos os campos obrigatórios.",
-        variant: "destructive",
-      });
-      return;
+        toast.error('Por favor, preencha todos os campos obrigatórios antes de continuar.');
+        return;
     }
 
-    setLoading(true);
-    const rawImageUrl=await SaveRawImageToFirebase();
-    const result=await axios.post('/api/redesign-room',{
-      imageUrl:rawImageUrl,
-      roomType:formData?.roomType,
-      designType:formData?.designType,
-      additionalReq:formData?.additionalReq,
-      userEmail:user?.primaryEmailAddress?.emailAddress
-    });
-    console.log(result.data);
-    setAiOutputImage(result.data.result);// Output Image Url
-    await updateUserCredits();
+    try {
+        setLoading(true);
+        const rawImageUrl = await SaveRawImageToFirebase();
+        
+        const result = await axios.post('/api/redesign-room', {
+            imageUrl: rawImageUrl,
+            roomType: formData?.roomType,
+            designType: formData?.designType,
+            additionalReq: formData?.additionalReq,
+            userEmail: user?.primaryEmailAddress?.emailAddress
+        });
 
-    setOpenOutputDialog(true);
-   
-    setLoading(false);
-
+        setAiOutputImage(result.data.result);
+        setUserDetail(prev => ({
+            ...prev,
+            credits: result.data.updatedCredits
+        }));
+        
+        setOpenOutputDialog(true);
+        toast.success('Seu design foi gerado com sucesso!');
+    } catch (error) {
+        console.error(error);
+        toast.error('Ocorreu um erro ao gerar seu design. Por favor, tente novamente.');
+    } finally {
+        setLoading(false);
+    }
   }
 
   const SaveRawImageToFirebase=async()=>{
@@ -96,44 +97,6 @@ function CreateNew() {
     setOrgImage(downloadUrl);
     return downloadUrl;
 
-  }
-
-  /**
-   * Update the user credits
-   * @returns 
-   */
-  const updateUserCredits=async()=>{
-    try {
-        const result = await db.transaction(async (tx) => {
-            // Primeiro verifica se ainda tem créditos
-            const user = await tx.select()
-                .from(Users)
-                .where(eq(Users.email, userDetail.email))
-                .limit(1);
-
-            if (!user[0] || user[0].credits <= 0) {
-                throw new Error('Créditos insuficientes');
-            }
-
-            // Atualiza os créditos
-            const updated = await tx.update(Users)
-                .set({ credits: user[0].credits - 1 })
-                .where(eq(Users.email, userDetail.email))
-                .returning({ id: Users.id, credits: Users.credits });
-
-            return updated[0];
-        });
-
-        setUserDetail(prev => ({
-            ...prev,
-            credits: result.credits
-        }));
-
-        return result.id;
-    } catch (error) {
-        console.error('Erro ao atualizar créditos:', error);
-        throw error;
-    }
   }
 
   return (

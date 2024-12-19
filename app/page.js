@@ -45,29 +45,37 @@ export default function Home() {
 
       {/* Sliders Section */}
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="mt-14 flex justify-center gap-8">
-          <div className="flex-1 max-w-lg">
-            <ReactBeforeSliderComponent
-              firstImage={{
-                imageUrl: '/after.png'
-              }}
-              secondImage={{
-                imageUrl: '/before.png'
-              }}
-              className="custom-slider"
-            />
+        <div className="mt-14 flex flex-col md:flex-row justify-center gap-8">
+          <div className="flex-1 max-w-lg w-full mx-auto">
+            <div className="relative w-full aspect-[4/3]">
+              <ReactBeforeSliderComponent
+                firstImage={{
+                  imageUrl: '/after.png',
+                  alt: 'after'
+                }}
+                secondImage={{
+                  imageUrl: '/before.png',
+                  alt: 'before'
+                }}
+                className="custom-slider"
+              />
+            </div>
           </div>
 
-          <div className="flex-1 max-w-lg">
-            <ReactBeforeSliderComponent
-              firstImage={{
-                imageUrl: '/before1.png'
-              }}
-              secondImage={{
-                imageUrl: '/after1.jpg'
-              }}
-              className="custom-slider"
-            />
+          <div className="flex-1 max-w-lg w-full mx-auto">
+            <div className="relative w-full aspect-[4/3]">
+              <ReactBeforeSliderComponent
+                firstImage={{
+                  imageUrl: '/before1.png',
+                  alt: 'before'
+                }}
+                secondImage={{
+                  imageUrl: '/after1.jpg',
+                  alt: 'after'
+                }}
+                className="custom-slider"
+              />
+            </div>
           </div>
         </div>
       </div>

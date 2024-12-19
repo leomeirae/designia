@@ -11,7 +11,12 @@ function Header() {
   return (
     <div className='p-3 md:p-5 shadow-sm flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center'>
         <Link href={'/'} className='flex gap-2 items-center'>
-            <Image src={'/logo.svg'} width={40} height={40} />
+            <Image 
+                src={'/logo.svg'} 
+                width={40} 
+                height={40} 
+                alt="IA Design Logo"
+            />
             <h2 className='font-bold text-lg text-white'>IA DESIGN</h2>
         </Link>
 

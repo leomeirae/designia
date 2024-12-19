@@ -89,3 +89,31 @@ body {
     height: auto;
     object-fit: contain; /* Ensures the image fits within the container without stretching */
 }
+
+/* Estilos para o componente de slider */
+.custom-slider {
+    @apply relative w-full h-full;
+}
+
+.custom-slider img {
+    @apply w-full h-full object-cover;
+}
+
+/* Ajustes para o container do slider */
+.before-after-slider-component {
+    @apply w-full h-full !important;
+}
+
+/* Ajustes para o slider handle */
+.resize-handle {
+    @apply h-full !important;
+}
+
+.slider-button {
+    @apply z-10 !important;
+}
+
+/* Ajustes para as imagens dentro do slider */
+.before-after-slider-component img {
+    @apply max-w-none w-full h-full object-cover !important;
+}

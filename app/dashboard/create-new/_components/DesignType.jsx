@@ -48,6 +48,7 @@ function DesignType({selectedDesignType}) {
               src={design.image} 
               width={200} 
               height={200} 
+              alt={`${design.name} style example`}
               className={`h-[120px] w-[120px] rounded-md object-cover
               hover:scale-105 transition-all 
               cursor-pointer ${design.name==selectedOption&&'border-2 border-primary rounded-md p-1'}`}
