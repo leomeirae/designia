@@ -93,11 +93,12 @@ function CreateNew() {
 
   return (
     <div>
-        <h2 className='font-bold text-4xl text-primary text-center'>Veja a Magia da IA no Redesign de Interiores</h2>
-        <p className='text-center text-gray-500'>Transforme qualquer ambiente com um clique. Selecione um espaço, escolha um estilo e veja como a IA reimagina instantaneamente o seu ambiente.</p>
+        <h2 className='font-bold text-2xl md:text-4xl text-primary text-center'>Deixe a IA redesenhar seu ambiente</h2>
+        <p className='text-center text-gray-500 font-bold'>Siga este passo a passo simples para criar seu design de interiores. 
+          Os campos com * são obrigatórios.
+        </p>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 
-         mt-10 gap-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 mt-5 md:mt-10 gap-5 md:gap-10'>
           {/* Image Selection  */}
           <ImageSelection selectedImage={(value)=>onHandleInputChange(value,'image')}/>
           {/* Form Input Section  */}

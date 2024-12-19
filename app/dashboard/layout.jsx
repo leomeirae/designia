@@ -1,15 +1,15 @@
 import React from 'react'
 import Header from './_components/Header'
 
-function DashboardLayout({children}) {
+export default function DashboardLayout({children}) {
   return (
     <div>
+      <div className="bg-gradient-to-b from-[#08002F] via-[#030014] to-[#000003]">
         <Header/>
-        <div className='pt-20 px-10 md:px-20 lg:px-40 xl:px-60'>
-            {children}
-        </div>
+      </div>
+      <div className='pt-5 md:pt-20 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40'>
+        {children}
+      </div>
     </div>
   )
 }
-
-export default DashboardLayout

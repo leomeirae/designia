@@ -9,9 +9,12 @@ import {
 
 function RoomType({selectedRoomType}) {
     return (
-        <div>
-            <label className='text-slate-400' style={{ color: 'rgb(127 87 241 / var(--tw-text-opacity))' }}>
-                Selecione o tipo de ambiente *
+        <div className='mt-5'>
+            <label 
+                className='text-[#1a1a1a] hover:text-[rgb(127,87,241)] font-bold transition-colors' 
+                style={{ color: 'inherit' }}
+            >
+                2 - Selecione o tipo de ambiente *
             </label>
             <Select onValueChange={(value) => selectedRoomType(value)}>
                 <SelectTrigger className="w-full">

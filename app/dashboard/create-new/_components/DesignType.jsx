@@ -31,17 +31,28 @@ function DesignType({selectedDesignType}) {
   const [selectedOption,setSelectedOption]=useState();
   return (
     <div className='mt-5'>
-      <label className='text-gray-500' style={{ color: 'rgb(127 87 241 / var(--tw-text-opacity))' }}>
-        Selecione o estilo de design do seu ambiente
+      <label 
+        className='text-[#1a1a1a] hover:text-[rgb(127,87,241)] font-bold transition-colors' 
+        style={{ color: 'inherit' }}
+      >
+        3 - Selecione o estilo de design do seu ambiente *
       </label>
-      <div className='grid grid-cols-2 mt-3 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+      <div className='grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mt-4'>
         {Designs.map((design,index)=>(
-          <div key={index} onClick={()=>{setSelectedOption(design.name);selectedDesignType(design.name)}}>
-            <Image src={design.image} width={100} height={100} 
-            className={`h-[70px] rounded-md 
-            hover:scale-105 transition-all 
-            cursor-pointer ${design.name==selectedOption&&'border-2 border-primary rounded-md p-1'}`}/>
-            <h2>{design.name}</h2>
+          <div 
+            key={index} 
+            onClick={()=>{setSelectedOption(design.name);selectedDesignType(design.name)}}
+            className='flex flex-col items-center gap-3'
+          >
+            <Image 
+              src={design.image} 
+              width={200} 
+              height={200} 
+              className={`h-[120px] w-[120px] rounded-md object-cover
+              hover:scale-105 transition-all 
+              cursor-pointer ${design.name==selectedOption&&'border-2 border-primary rounded-md p-1'}`}
+            />
+            <h2 className='text-center font-medium'>{design.name}</h2>
           </div>
         ))}
       </div>

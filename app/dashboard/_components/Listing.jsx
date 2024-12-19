@@ -31,17 +31,22 @@ function Listing() {
         <div>
             <div className='flex items-center justify-between'>
                 <h2 className='font-bold text-3xl'>Olá, {user?.fullName}</h2>
-                <Link href={'/dashboard/create-new'}>
-                    <Button>+ </Button>
-                </Link>
             </div>
-
 
             {userRoomList?.length == 0 ?
                 <EmptyState />
                 :
                 <div className='mt-10'>
-                    <h2 className='font-medium text-primary text-xl mb-10'>AI Room Studio</h2>
+                    <div className='flex justify-between items-center mb-10'>
+                        <h2 className='font-medium text-primary text-xl'>AI Room Studio</h2>
+                        <Link href={'/dashboard/create-new'}>
+                            <Button 
+                                className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white"
+                            >
+                                Crie Mais
+                            </Button>
+                        </Link>
+                    </div>
                     {/* Listing  */}
                     <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {userRoomList.map((room,index)=>(
