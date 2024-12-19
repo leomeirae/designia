@@ -10,20 +10,21 @@ import {
 function RoomType({selectedRoomType}) {
     return (
         <div>
-            <label className='text-slate-400'>Select Room Type *</label>
-            <Select onValueChange={(value)=>selectedRoomType(value)}>
+            <label className='text-slate-400' style={{ color: 'rgb(127 87 241 / var(--tw-text-opacity))' }}>
+                Selecione o tipo de ambiente *
+            </label>
+            <Select onValueChange={(value) => selectedRoomType(value)}>
                 <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Room Type" />
+                    <SelectValue placeholder="Tipo de Ambiente" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="Living Room">Living Room</SelectItem>
-                    <SelectItem value="Bedroom">Bedroom</SelectItem>
-                    <SelectItem value="Kitchen">Kitchen</SelectItem>
-                    <SelectItem value="Office">Office</SelectItem>
-                    <SelectItem value="Bathroom">Bathroom</SelectItem>
+                    <SelectItem value="Sala">Sala</SelectItem>
+                    <SelectItem value="Quarto">Quarto</SelectItem>
+                    <SelectItem value="Cozinha">Cozinha</SelectItem>
+                    <SelectItem value="Escritório">Escritório</SelectItem>
+                    <SelectItem value="Banheiro">Banheiro</SelectItem>
                 </SelectContent>
             </Select>
-
         </div>
     )
 }

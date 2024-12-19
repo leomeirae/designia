@@ -93,8 +93,8 @@ function CreateNew() {
 
   return (
     <div>
-        <h2 className='font-bold text-4xl text-primary text-center'>Experience the Magic of AI Remodeling</h2>
-        <p className='text-center text-gray-500'>Transform any room with a click. Select a space, choose a style, and watch as AI instantly reimagines your environment.</p>
+        <h2 className='font-bold text-4xl text-primary text-center'>Veja a Magia da IA no Redesign de Interiores</h2>
+        <p className='text-center text-gray-500'>Transforme qualquer ambiente com um clique. Selecione um espaço, escolha um estilo e veja como a IA reimagina instantaneamente o seu ambiente.</p>
 
         <div className='grid grid-cols-1 md:grid-cols-2 
          mt-10 gap-10'>
@@ -109,8 +109,8 @@ function CreateNew() {
             {/* Additonal Requirement TextArea (Optional) */}
             <AdditionalReq additionalRequirementInput={(value)=>onHandleInputChange(value,'additionalReq')}/>
             {/* Button To Generate Image  */}
-            <Button className="w-full mt-5" onClick={GenerateAiImage}>Generate</Button>
-            <p className='text-sm text-gray-400 mb-52'>NOTE: 1 Credit will use to redesign your room</p>
+            <Button className="w-full mt-5" onClick={GenerateAiImage}>Gerar</Button>
+            <p className='text-sm text-gray-400 mb-52'>*1 crédito será usado para redesenhar seu ambiente</p>
           </div>
         </div>
         <CustomLoading loading={loading} />

@@ -20,9 +20,10 @@ export async function POST(req){
     try{
         const input = {
             image: imageUrl,
-            prompt: 'A '+roomType+' with a '+designType+" style interior "+additionalReq
+            prompt: 'A '+roomType+' with a '+designType+" style interior "+additionalReq,
+            negative_prompt: "lowres, watermark, banner, logo, watermark, contactinfo, text, deformed, blurry, blur, out of focus, out of frame, surreal, extra, ugly, upholstered walls, fabric walls, plush walls, mirror, mirrored, functional, realistic"
         };
-        
+        console.log(input);
         const output = await replicate.run("adirik/interior-design:76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38", { input });    
         // Convert Output Url to BASE64 Image 
         const base64Image=await ConvertImageToBase64(output);

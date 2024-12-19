@@ -15,12 +15,11 @@ function RoomDesignCard({room}) {
                 imageUrl:room?.orgImage,
                 
             }}
-            
-           
+            className="custom-slider"
         />
         <div className='p-4'>
-         <h2>🏡 Room Type :  {room.roomType}</h2>
-         <h2>🎨 Design Type :{room.designType}</h2>
+         <h2>🏡 Tipo de Ambiente: {room.roomType}</h2>
+         <h2>🎨 Tipo de Design: {room.designType}</h2>
 
 
         </div>

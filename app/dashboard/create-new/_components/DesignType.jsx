@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 function DesignType({selectedDesignType}) {
   const Designs = [
     {
-      name: 'Modern',
+      name: 'Moderno',
       image: '/modern.png',
     },
     {
@@ -12,7 +12,7 @@ function DesignType({selectedDesignType}) {
       image: '/industrial.png',
     },
     {
-      name: 'Bohemian',
+      name: 'Boêmio',
       image: '/bohemian.png',
     },
     {
@@ -20,10 +20,10 @@ function DesignType({selectedDesignType}) {
       image: '/traditional.png',
     },
     {
-      name: 'Rustic',
+      name: 'Rústico',
       image: '/rustic.png',
     }, {
-      name: 'Minimalist',
+      name: 'Minimalista',
       image: '/minimalist.png',
     }
   ]
@@ -31,7 +31,9 @@ function DesignType({selectedDesignType}) {
   const [selectedOption,setSelectedOption]=useState();
   return (
     <div className='mt-5'>
-      <label className='text-gray-500'>Select Interior Design Type</label>
+      <label className='text-gray-500' style={{ color: 'rgb(127 87 241 / var(--tw-text-opacity))' }}>
+        Selecione o estilo de design do seu ambiente
+      </label>
       <div className='grid grid-cols-2 mt-3 md:grid-cols-3 lg:grid-cols-4 gap-5'>
         {Designs.map((design,index)=>(
           <div key={index} onClick={()=>{setSelectedOption(design.name);selectedDesignType(design.name)}}>

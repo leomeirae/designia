@@ -83,3 +83,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.custom-slider img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Ensures the image fits within the container without stretching */
+}

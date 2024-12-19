@@ -28,7 +28,7 @@ function AiOutputDialog({openDialog,closeDialog,orgImage,aiImage}) {
             secondImage={{
                 imageUrl:orgImage
             }}
-           
+            className="custom-slider"
         />
         <div className='flex gap-2 justify-end'>
         <Button variant="ghost" onClick={()=>closeDialog(false)}>Close</Button>

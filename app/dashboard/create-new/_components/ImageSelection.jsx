@@ -13,7 +13,7 @@ function ImageSelection({selectedImage}) {
 
   return (
     <div>
-        <label>Select Image of your room</label>
+        <label>Selecione uma imagem do seu ambiente: jpg, png e jpeg.</label>
         <div className='mt-3'>
             <label htmlFor='upload-image'>
                 <div className={` border rounded-xl 

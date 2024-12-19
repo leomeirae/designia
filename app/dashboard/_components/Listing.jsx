@@ -30,9 +30,9 @@ function Listing() {
     return (
         <div>
             <div className='flex items-center justify-between'>
-                <h2 className='font-bold text-3xl'>Hello, {user?.fullName}</h2>
+                <h2 className='font-bold text-3xl'>Olá, {user?.fullName}</h2>
                 <Link href={'/dashboard/create-new'}>
-                    <Button>+ Redesign Room</Button>
+                    <Button>+ </Button>
                 </Link>
             </div>
 
