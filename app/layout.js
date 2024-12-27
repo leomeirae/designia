@@ -4,10 +4,14 @@ import {Outfit} from 'next/font/google'
 import Provider from "./provider";
 import { Toaster } from 'react-hot-toast';
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Footer from "./components/Footer";
 
 export const metadata = {
   title: "IA Design de Interiores",
-  description: "Redesenhe seu ambiente com IA",
+  description: "Design de Interiores com Inteligência Artificial",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 const outfit=Outfit({subsets:['latin']})
@@ -16,9 +20,12 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={outfit.className}>
+        <body className={`${outfit.className} flex flex-col min-h-screen`}>
           <Provider>
-            {children}
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
           </Provider>
           <Toaster position="top-center" />
           <SpeedInsights />

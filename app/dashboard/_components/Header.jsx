@@ -22,15 +22,17 @@ function Header() {
 
         <div className='flex flex-wrap gap-3 md:gap-7 items-center justify-center'>
             <Link href={'/dashboard/buy-credits'}>
-            <Button variant="ghost" className="rounded-full text-[#D4F462] text-base md:text-lg font-medium">Adquirir Créditos</Button>
+                <Button variant="ghost" className="rounded-full text-[#D4F462] text-base md:text-lg font-medium">
+                    Adquirir Créditos
+                </Button>
             </Link>
             {userDetail?.credits&& <div className='flex gap-2 p-1 items-center bg-slate-200 px-3 rounded-full'>
-                <Image src={'/star.png'} width={20} height={20}/>
+                <Image src={'/star.png'} width={20} height={20} alt="Credits icon"/>
                 <h2>{userDetail?.credits}</h2>
             </div>}
             <UserButton/>
             <Link href={'/dashboard'}>
-            <Button>Dashboard</Button>
+                <Button>Dashboard</Button>
             </Link>
         </div>
     </div>
