@@ -14,16 +14,8 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 function BuyCredits() {
     const creditsOption=[
         {
-          credits:5,
-          amount:5.99
-        },
-        {
           credits:10,
           amount:9.99
-        },
-        {
-          credits:25,
-          amount:19.99
         },
         {
           credits:50,
@@ -83,30 +75,34 @@ function BuyCredits() {
     };
 
     return (
-        <div>
-            <h2 className='font-bold text-xl md:text-2xl'>Adquirir Créditos</h2>
-            <p>Desbloqueie infinitas posibilidades...</p>
+        <div className="max-w-4xl mx-auto px-4">
+            <h2 className='font-bold text-xl md:text-2xl text-center'>Adquirir Créditos</h2>
+            <p className="text-center">Desbloqueie infinitas posibilidades...</p>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-5 mt-5 md:mt-10'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 justify-items-center'>
                 {creditsOption.map((item,index)=>(
-                    <div key={index} className={`flex flex-col gap-2 justify-center items-center border shadow-md rounded-lg p-3 md:p-5
-                        ${selectedOption?.credits==item.credits ? 'border-primary' : ''}
-                    `}>
-                        <h2 className='font-bold text-2xl md:text-3xl'>{item.credits}</h2>
-                        <h2 className='font-medium text-lg md:text-xl'>Créditos</h2>
+                    <div key={index} 
+                        className={`flex flex-col gap-2 justify-center items-center 
+                            border shadow-md rounded-lg p-5 w-full max-w-[280px]
+                            hover:shadow-lg transition-shadow duration-200
+                            ${selectedOption?.credits==item.credits ? 'border-primary border-2' : 'border-gray-200'}
+                        `}
+                    >
+                        <h2 className='font-bold text-3xl'>{item.credits}</h2>
+                        <h2 className='font-medium text-xl'>Créditos</h2>
                         <Button 
-                            className="w-full" 
+                            className="w-full mt-2" 
                             onClick={()=>setSelectedOption(item)}
                         >
                             Selecionar
                         </Button>
-                        <h2 className='font-medium text-primary'>R${item.amount}</h2>
+                        <h2 className='font-medium text-primary mt-1'>R${item.amount}</h2>
                     </div>
                 ))}
             </div>
 
             {clientSecret && (
-                <div className='mt-8 max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg'>
+                <div className='mt-8 max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg'>
                     <Elements stripe={stripePromise} options={{ clientSecret, appearance }}>
                         <PaymentForm 
                             clientSecret={clientSecret}

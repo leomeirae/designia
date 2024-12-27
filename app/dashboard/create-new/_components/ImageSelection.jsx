@@ -17,7 +17,7 @@ function ImageSelection({selectedImage}) {
           className='text-[#1a1a1a] hover:text-[rgb(127,87,241)] font-bold transition-colors' 
           style={{ color: 'inherit' }}
         >
-          1 - Selecione uma imagem do seu ambiente: jpg, png e jpeg.
+          1 - Faça o upload da imagem do seu ambiente: jpg, png e jpeg.
         </label>
         <div className='mt-3'>
             <label htmlFor='upload-image'>

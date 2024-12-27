@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 import Replicate from "replicate";
 import { eq } from "drizzle-orm";
 import { Users } from "@/config/schema";
+import sharp from 'sharp';
 
 const replicate = new Replicate({
     auth:process.env.NEXT_PUBLICK_REPLICATE_API_TOKEN
@@ -92,3 +93,22 @@ async function ConvertImageToBase64(imageUrl){
 
     return "data:image/png;base64,"+base64ImageRaw;
 }
+
+const SaveRawImageToFirebase = async () => {
+  const fileName = Date.now() + "_raw.png";
+  const imageRef = ref(storage, '/room-redesign/' + fileName);
+
+  // Converte a imagem para o formato PNG usando o sharp
+  const convertedImage = await sharp(formData.image)
+    .png()
+    .toBuffer();
+
+  await uploadBytes(imageRef, convertedImage).then(resp => {
+    console.log('File Uploaded...');
+  });
+
+  const downloadUrl = await getDownloadURL(imageRef);
+  console.log(downloadUrl);
+  setOrgImage(downloadUrl);
+  return downloadUrl;
+};
