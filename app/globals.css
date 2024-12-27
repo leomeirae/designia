@@ -117,3 +117,12 @@ body {
 .before-after-slider-component img {
     @apply max-w-none w-full h-full object-cover !important;
 }
+
+.resize-handle .handle-line {
+    width: 2px !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background-color: white !important;
+}

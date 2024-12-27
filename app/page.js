@@ -23,7 +23,7 @@ export default function Home() {
           <div className="mt-5 max-w-2xl text-center mx-auto">
             <h1 className="block font-bold text-white text-4xl md:text-5xl lg:text-6xl">
               Inteligência Artificial
-              <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent"> Design de Interiores</span>
+              <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent"> & Design de Interiores</span>
             </h1>
           </div>
           <div className="mt-5 max-w-3xl text-center mx-auto">
@@ -47,7 +47,7 @@ export default function Home() {
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="mt-14 flex flex-col md:flex-row justify-center gap-8">
           <div className="flex-1 max-w-lg w-full mx-auto">
-            <div className="relative w-full aspect-[4/3]">
+            <div className="shadow-md rounded-md cursor-pointer">
               <ReactBeforeSliderComponent
                 firstImage={{
                   imageUrl: '/after.png',
@@ -63,7 +63,7 @@ export default function Home() {
           </div>
 
           <div className="flex-1 max-w-lg w-full mx-auto">
-            <div className="relative w-full aspect-[4/3]">
+            <div className="shadow-md rounded-md cursor-pointer">
               <ReactBeforeSliderComponent
                 firstImage={{
                   imageUrl: '/before1.png',
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
             <div className="mt-5 flex-1">
               <h3 className="group-hover:text-white text-lg font-semibold text-white dark:text-white dark:group-hover:text-white">Upload</h3>
-              <p className="mt-1 text-white dark:text-white">Carregue sua imagem do seu quarto</p>
+              <p className="mt-1 text-white dark:text-white">Carregue sua imagem do seu ambiente</p>
             </div>
             <span className="mt-2 inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 group-hover:underline font-medium">
               
@@ -139,6 +139,16 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      <style jsx>{`
+        :global(.custom-slider .handle .handle-line) {
+          width: 2px;
+          height: 100%;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      `}</style>
     </div>
   );
 }
